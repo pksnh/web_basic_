@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title_image_edit</title>
+    <style>
+        .filter
+        {
+            /*filter: blur(5px);*/
+            /*filter: brightness(2);*/
+            /*filter: contrast(500%);*/
+            /*filter: drop-shadow(16px 16px 20px blue);*/
+            /*filter: grayscale(20%);*/
+            /*filter: invert(30%);*/
+            /*filter: opacity(0%);*/
+            /*filter: saturate(70%);*/
+            /*filter: sepia(100%);*/
+            filter: brightness(0.5) drop-shadow(16px 16px 20px purple);
+        }
+
+        #title
+        {
+            font-size: 40px;
+        }
+
+        #header
+        {
+            /*div와 동일*/
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+<!--    <div id="title">밤 하늘</div>-->
+
+    <header>밤하늘</header>
+<!--같은 폴더 안이면 그냥 "" 안에 작성하면 됨, ./-현재 리렉토리(안 써도 됨), ../-상위 폴더로 이동=>상대 경로-->
+    <img src="../day2/nightsky.jpg" width="300px" class="filter">
+
+<!--    span-->
+    <zzz>이 태그는 뭐냐</zzz>
+    <yyy>div</yyy>
+</body>
+</html>
