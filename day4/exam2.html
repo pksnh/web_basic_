@@ -7,18 +7,20 @@
   <script>
     function numprint()
     {
-      let num = parseInt(prompt("숫자를 입력하세요"));
+      const num = parseInt(prompt("숫자를 입력하세요"));
 
-      while(isNaN(num))
+      if (isNaN(num))
       {
         alert("숫자를 입력해주세요");
-        num = prompt("숫자를 입력하세요");
+        return;
+        // num = prompt("숫자를 입력하세요");
       }
 
-      while(num<1 || num>100)
+      if(num<1 || num>100)
       {
         alert("1이상 100이하를 넣어주세요")
-        num = prompt();
+        return;
+        // num = prompt();
       }
 
       if(num>=1&&num<=100)
