@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>exam1</title>
+  <script>
+    function exam()
+    {
+      console.log("잘 되나??");
+    }
+
+    function input()
+    {
+      let name = prompt();
+
+      while(name==="" || name===null)
+      {
+        alert("입력해주세요.");
+        name = prompt();
+      }
+
+      if(name!=="" || name!==null)
+      {
+        alert(name+"님 안녕하세요.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <script>
+    input();
+  </script>
+</body>
+</html>
