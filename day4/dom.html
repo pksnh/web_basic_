@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Dom 조작</title>
+    <script>
+        document.writeln("<b>hello</b><br>");
+        document.write("<b>world</b><br>");
+
+        let score = 0;
+
+        function load()
+        {
+            let div = document.getElementById("id_div");
+            console.log(div1);
+
+            window.addEventListener("keydown", (event) =>
+            {
+                if(event.key === "ArrowLeft")
+                {
+                    console.log("왼쪽");
+                }
+                else if (event.key === "ArrowRight")
+                {
+                    console.log("오른쪽");
+                }
+                else if (event.key === "ArrowUp")
+                {
+                    console.log("위");
+                }
+                else if (event.key === "ArrowDown")
+                {
+                    console.log("아래");
+                }
+            });
+        }
+
+        function exam()
+        {
+            let div1 = document.getElementById("id_div");
+            let divList = document.getElementsByClassName("classDiv"); // class는 복수로 존재 가능
+        }
+
+        function changeTextColor()
+        {
+            const div = document.getElementById("id_div")
+            div.style.color = "red";
+        }
+
+        function changeClassStyle1()
+        {
+            const div = document.getElementById("id_div")
+            div.className = "style1";
+        }
+
+        function changeClassStyle2()
+        {
+            const div = document.getElementById("id_div")
+            div.className = "style2";
+        }
+
+        function inputTag()
+        {
+            const div = document.getElementById("background");
+            div.innerHTML = "<b>hello</b>";
+        }
+
+    </script>
+    <style>
+        .style1
+        {
+            background-color: aqua;
+        }
+
+        .style2
+        {
+            background-color: yellow;
+        }
+
+        div{}
+        #id_div{}
+        .classDiv{}
+
+        #background
+        {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+
+        #mouse
+        {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+    </style>
+</head>
+<body onload = "load()">
+    <button onclick = "changeTextColor()">색상 변경</button>
+    <button onclick = "changeClassStyle1()">style1</button>
+    <button onclick = "changeClassStyle2()">style2</button>
+    <div>div</div>
+    <div id="id_div">id_div</div>
+    <div class = "classDiv">class div1</div>
+    <div class = "classDiv">class div2</div>
+    <div id="background"></div>
+
+    <label for="type">
+        성별 :
+        <select id="type" onchange="typeChanged()">
+            <option value = "man">남</option>
+            <option value = "woman">여</option>
+        </select>
+    </label>
+
+    <script>
+        function typeChanged()
+        {
+            const type = document.getElementById("type");
+            console.log(type.value);
+        }
+    </script>
+
+    <div id="mouse" onmouseover="mouseOver(this)" onmouseout="mouseOut(this)"></div>
+
+    <script>
+        function mouseOver(target)
+        {
+            target.style.backgroundColor = "red";
+        }
+
+        function mouseOut(target)
+        {
+            target.style.backgroundColor = "";
+        }
+    </script>
+</body>
+</html>
