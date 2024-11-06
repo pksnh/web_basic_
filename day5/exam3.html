@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Title_exam3</title>
+  <style>
+    .card
+    {
+      font-size: 30px;
+      width: 500px;
+    }
+    .title
+    {
+      background-color: #375298;
+      color: white;
+      padding: 16px;
+    }
+    .contents
+    {
+      padding: 16px;
+      background-color: #e2e4e8;
+    }
+    .item
+    {
+      margin: 16px 24px;
+      padding: 8px;
+      background-color: white;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script>
+    function addText()
+    {
+      const text=$("#inputText").val();
+      $(".contents").append(`<div class="item">${text}</div>`);
+      $("#inputText").val("");
+    }
+  </script>
+</head>
+<body>
+<div class="card">
+  <div class="title">최도근님, 안녕하세요?</div>
+  <div class="contents">
+    페이스북 색감 따라하기
+    <div class="item">
+      <b>박지성</b> SBS에서 월드컵 보세요!
+    </div>
+    <div class="item">
+      <b>안정환</b> MBC죠...
+    </div>
+    <div class="item">
+      <b>이영표</b> KBS는 수신료의 가치를..
+    </div>
+  </div>
+</div>
+
+<input type="text" id="inputText">
+<button onclick="addText()">등록하기</button>
+</body>
+</html>
