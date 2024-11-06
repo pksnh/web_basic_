@@ -7,6 +7,10 @@
 - 목록2
 - 목록3
 
+## 사진
+![day](https://github.com/user-attachments/assets/264ad529-a84a-4e9d-b876-54255e01b55f)
+
+
 ### 제목
 ```java
 clas GuGuClass
