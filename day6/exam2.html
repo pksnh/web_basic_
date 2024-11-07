@@ -19,6 +19,7 @@
 
     #player
     {
+      z-index: 1;
       position: absolute;
       left: 30px;
       bottom: 80px;
@@ -33,9 +34,19 @@
 
     .enemy
     {
+      z-index: 2;
       position: absolute;
       right: 10px;
       bottom: 80px;
+    }
+
+    .fire
+    {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      bottom: 100px;
+      left: 30px;
     }
   </style>
 
@@ -98,6 +109,8 @@
         setScore(score);
       }
 
+      $("enemy").show();
+
       isSpawning = true;
       enemySpeed = Math.random() * 15 + 5; // Math.random(); - 0.0~1.0사이
       // console.log("respawnEnemy");
@@ -136,16 +149,45 @@
       return isColliding;
     }
 
+    function checkEnemyDie()
+    {
+      const enemy = document.getElementById("enemy");
+
+      $(".fire").each(()=>
+      {
+        if(checkCollision(this, enemy))
+        {
+          $(this).remove();
+          $(enemy).hide();
+          // enemy.style.display = none;
+          respawnEnemy();
+        }
+      });
+    }
+
     function gameLoop()
     {
       moveEnemy();
+
+      checkEnemyDie();
+
       if(checkGameOver())
       {
         isDie=true;
         // return;
       }
 
+
+
       requestAnimationFrame(gameLoop)
+    }
+
+    function fire()
+    {
+      const id = Date.now();
+      $("#background").append(`<div id="${id}" class="fire">총알${id}</div>`);
+
+      $(`#${id}`).animate({left: "500px"});
     }
 
     document.addEventListener("keydown", (event) =>
@@ -154,6 +196,10 @@
       {
         jump();
         console.log("점프");
+      }
+      else if (event.key === "Control")
+      {
+        fire();
       }
     });
 
@@ -174,6 +220,8 @@
     <div id="score">
       Score : 0
     </div>
+
+
   </div>
 
 
