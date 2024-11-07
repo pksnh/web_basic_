@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        #player
+        {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
+
+    <script>
+        function hide()
+        {
+            $("#player").hide(1000);
+        }
+
+        function show()
+        {
+            $("#player").show(1000);
+        }
+
+        function fadeIn()
+        {
+            $("#player").fadeIn(1000);
+        }
+
+        function fadeOut()
+        {
+            $("#player").fadeOut(1000);
+        }
+
+        function move()
+        {
+            $("#player").animate({left: "+=50px", top: "+=50px"});
+        }
+
+    </script>
+</head>
+<body>
+    <div id="player">div1</div>
+    <button onclick="hide()">hide</button>
+    <button onclick="show()">show</button>
+    <button onclick="fadeIn()">fadeIn</button>
+    <button onclick="fadeOut()">fadeOut</button>
+    <button onclick="move()">move</button>
+    <button onclick="fadeOut()">fadeOut</button>
+</body>
+</html>
