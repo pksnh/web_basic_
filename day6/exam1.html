@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>exam1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <style>
+    #background
+    {
+      background-image: url("../day1/nightsky.jpg");
+      background-size: cover;
+      position: absolute;
+      left: 50px;
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+    }
+
+    #player
+    {
+      background-image: url("asset/icon.png");
+      background-size: cover;
+      position: absolute;
+      bottom: 100px;
+      left: 100px;
+      width: 50px;
+      height: 50px;
+      background-color: aqua;
+    }
+  </style>
+
+  <script>
+    const bgWidth = 500;
+    const bgHeight = 500;
+    const playerWidth = 50;
+    const playerHeight = 50;
+
+    function moveLeft()
+    {
+      $("#player").css("left", "-=50px");
+    }
+    function moveRight()
+    {
+      $("#player").css("left", "+=50px");
+    }
+    function moveDown()
+    {
+      $("#player").css("top", "+=50px");
+    }
+    function moveUp()
+    {
+      $("#player").css("top", "-=50px");
+    }
+
+    function checkBounds()
+    {
+      const player = $("#player");
+      const playerLeft = parseInt(player.css("left")); // player.css("left"): "0px"-글자로 정보 들어옴
+      const playerTop = parseInt(player.css("top"));
+
+      if(playerLeft < 0)
+      {
+        player.css("left", "0px");
+      }
+      else if(playerLeft + playerWidth > bgWidth)
+      {
+        player.css("left", "450px");
+      }
+      else if(playerTop < 0)
+      {
+        player.css("top", "0px");
+      }
+      else if(playerTop + playerHeight > bgHeight)
+      {
+        player.css("top", "450px");
+      }
+    }
+
+    document.addEventListener("keydown", (event) =>
+    {
+      if(event.key === "ArrowLeft")
+      {
+        moveLeft();
+        console.log("왼쪽");
+      }
+      else if (event.key === "ArrowRight")
+      {
+        console.log("오른쪽");
+        moveRight();
+      }
+      else if (event.key === "ArrowUp")
+      {
+        console.log("위");
+        moveUp();
+      }
+      else if (event.key === "ArrowDown")
+      {
+        console.log("아래");
+        moveDown();
+      }
+      checkBounds();
+    });
+  </script>
+</head>
+<body>
+  <div id="background">
+    <div id="player"></div>
+  </div>
+
+</body>
+</html>
