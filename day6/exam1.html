@@ -27,6 +27,7 @@
       width: 50px;
       height: 50px;
       background-color: aqua;
+      visibility: hidden;
     }
   </style>
 
@@ -35,6 +36,15 @@
     const bgHeight = 500;
     const playerWidth = 50;
     const playerHeight = 50;
+
+    // 화면 다 그리고 실행
+    $(()=>{initGame();});
+
+    function initGame()
+    {
+      score = 0;
+      setTimeout(()=>{$("#player").css("visibility", "visible")}, 3000);
+    }
 
     function moveLeft()
     {

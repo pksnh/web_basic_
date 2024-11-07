@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <style>
+    #background
+    {
+      background-image: url("../day1/nightsky.jpg");
+      background-size: cover;
+      position: absolute;
+      left: 50px;
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+    }
+
+    #player
+    {
+      position: absolute;
+      left: 30px;
+      bottom: 80px;
+    }
+
+    #score
+    {
+      font-size: 30px;
+      text-align: center;
+      color: white;
+    }
+
+    .enemy
+    {
+      position: absolute;
+      right: 10px;
+      bottom: 80px;
+    }
+  </style>
+
+  <script>
+    const playerWidth = 50;
+    const playerHeight = 50;
+
+    let enemyRight = 10;
+    let enemySpeed = 10;
+    let isDie = false;
+    let isJumping = false;
+    let isSpawning = false;
+    let score = 0;
+
+    function jump()
+    {
+      if(isJumping === true)
+      {
+        return;
+      }
+
+      isJumping = true;
+
+      $("#player").animate({bottom: "+=150px"}, 500).animate({bottom: "-=150px"}, 500, () => {isJumping = false;});
+    }
+
+    function moveEnemy()
+    {
+      $(".enemy").css("right", `+=${enemySpeed}px`);
+
+      checkEnemyBounds();
+    }
+
+    function checkEnemyBounds()
+    {
+      const player = $(".enemy");
+      const playerLeft = parseInt(player.css("left")); // player.css("left"): "0px"-글자로 정보 들어옴
+
+      if(playerLeft < -100)
+      {
+        respawnEnemy();
+      }
+    }
+
+    function setScore(score)
+    {
+      $('#score').text(`SCORE : ${score}`);
+    }
+
+    function respawnEnemy()
+    {
+      if(isSpawning)
+      {
+        return;
+      }
+
+      if(!isDie)
+      {
+        score += 100;
+        setScore(score);
+      }
+
+      isSpawning = true;
+      enemySpeed = Math.random() * 15 + 5; // Math.random(); - 0.0~1.0사이
+      // console.log("respawnEnemy");
+      const spawnTime = Math.random() * 1000 + 500 // 500~1500
+      setTimeout(()=>{$(".enemy").css("right", "-100px"); isSpawning = false;}, spawnTime);
+    }
+
+    function checkGameOver()
+    {
+      const player = document.getElementById("player");
+      const enemy = document.getElementById("enemy");
+
+      let isGameOver = false;
+
+      if(checkCollision(player, enemy))
+      {
+        console.log("Game OVer");
+        isGameOver = true;
+      }
+
+      return isGameOver;
+    }
+
+    function checkCollision(div1, div2)
+    {
+      // div1과 div2의 위치와 크기를 구합니다.
+      const rect1 = div1.getBoundingClientRect();
+      const rect2 = div2.getBoundingClientRect();
+
+      // 충돌 체크 (겹침)
+      const isColliding = !(rect1.right < rect2.left ||   // div1의 오른쪽 끝이 div2의 왼쪽 끝보다 왼쪽에 있을 때
+              rect1.left > rect2.right ||   // div1의 왼쪽 끝이 div2의 오른쪽 끝보다 오른쪽에 있을 때
+              rect1.bottom < rect2.top ||   // div1의 아래쪽 끝이 div2의 위쪽 끝보다 위에 있을 때
+              rect1.top > rect2.bottom);    // div1의 위쪽 끝이 div2의 아래쪽 끝보다 아래에 있을 때
+
+      return isColliding;
+    }
+
+    function gameLoop()
+    {
+      moveEnemy();
+      if(checkGameOver())
+      {
+        isDie=true;
+        // return;
+      }
+
+      requestAnimationFrame(gameLoop)
+    }
+
+    document.addEventListener("keydown", (event) =>
+    {
+      if(event.key === " ")
+      {
+        jump();
+        console.log("점프");
+      }
+    });
+
+    $(()=>{gameLoop()});
+  </script>
+
+</head>
+<body>
+  <div id="background">
+    <div id="player">
+      <img src ="asset/horse_03.jpg" width="50px" height="50px">
+    </div>
+
+    <div class="enemy" id="enemy">
+      <img src ="asset/3h3fb.jpg" width="50px">
+    </div>
+
+    <div id="score">
+      Score : 0
+    </div>
+  </div>
+
+
+</body>
+</html>
