@@ -6,10 +6,31 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
   <style>
+    .sliding-background
+    {
+      background: url("../day1/nightsky.jpg");
+      width: 200%;
+      height: 100%;
+      animation: slide 20s linear infinite;
+    }
+
+    @keyframes slide /*애니메이션*/
+    {
+      from /*시작점*/
+      {
+        transform: translate(0, 0);
+      }
+
+      to
+      {
+        transform: translate(-220px, 0);
+      }
+    }
+
     #background
     {
-      background-image: url("../day1/nightsky.jpg");
-      background-size: cover;
+      /*background-image: url("../day1/nightsky.jpg");
+      background-size: cover;*/
       position: absolute;
       left: 50px;
       width: 500px;
@@ -209,6 +230,7 @@
 </head>
 <body>
   <div id="background">
+    <div class="sliding-background"></div>
     <div id="player">
       <img src ="asset/horse_03.jpg" width="50px" height="50px">
     </div>
@@ -220,10 +242,6 @@
     <div id="score">
       Score : 0
     </div>
-
-
   </div>
-
-
 </body>
 </html>
