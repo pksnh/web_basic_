@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    function moveNextPage()
+    {
+      const name = document.getElementById("name").value; // $("#name").val();
+      const age = document.getElementById("age").value;
+      window.location.href = `next_page.html?name=${name}&age=${age}`; // window.location.href에서 window 생략 가능
+    }
+  </script>
+</head>
+<body>
+<label>
+  이름:
+  <input type="text" id="name">
+</label>
+<br>
+<label>
+  나이:
+  <input type="text" id="age">
+</label>
+<br>
+  <button onclick="moveNextPage()">페이지 이동</button>
+</body>
+</html>
